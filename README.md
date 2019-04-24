@@ -1,2 +1,0 @@
-# PlatonViewLogisticReport
-Created with CodeSandbox
