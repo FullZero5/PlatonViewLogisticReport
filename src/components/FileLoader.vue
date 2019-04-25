@@ -45,7 +45,14 @@ export default {
             return new Array(data);
             break;
           case "Data":
-            return new Date(data);
+            let values = data.split(/[^0-9]/),
+              year = parseInt(values[2], 10),
+              month = parseInt(values[1], 10) - 1, // Month is zero based, so subtract 1
+              day = parseInt(values[0], 10),
+              hours = parseInt(values[3], 10),
+              minutes = parseInt(values[4], 10),
+              seconds = parseInt(values[5], 10);
+            return new Date(year, month, day, hours, minutes, seconds);
             break;
           default:
             return data;

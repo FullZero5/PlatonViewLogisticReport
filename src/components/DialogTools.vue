@@ -22,7 +22,7 @@
             <small>логистического отчета</small>
           </v-stepper-step>
           <v-stepper-content step="1">
-            <v-card class="mb-5" height="200px">
+            <v-card class="mb-5 elevation-0" height="200px">
               <v-container grid-list-xl text-xs-center v-if="getLengtData!==0">
                 <v-layout row wrap>
                   <v-flex xs10 offset-xs1>
@@ -58,7 +58,7 @@ import Calender from "./Calendar";
 import { mapActions, mapGetters } from "vuex";
 
 export default {
-  name: "DialogTolols",
+  name: "DialogTools",
   components: {
     FileLoader,
     Calender
