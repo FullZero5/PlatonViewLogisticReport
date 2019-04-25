@@ -2,8 +2,8 @@
   <v-container grid-list-xl text-xs-center>
     <v-layout row wrap>
       <v-flex xs10 offset-xs1>
-        <v-btn color="success" @click="$refs.inputUpload.click()">
-          <v-icon>attach_file</v-icon>Выберите файл
+        <v-btn fab color="primary" @click="$refs.inputUpload.click()">
+          <v-icon>attach_file</v-icon>
         </v-btn>
         <input v-show="false" ref="inputUpload" accept=".csv" type="file" @change="loadCSV($event)">
       </v-flex>

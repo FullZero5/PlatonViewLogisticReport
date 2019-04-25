@@ -9,7 +9,14 @@
         </v-layout>
       </v-content>
       <v-layout column class="fab-container">
-        <Dialog/>
+        <v-date-picker
+          locale="ru-ru"
+          v-model="date"
+          :events="Object.keys(MyEvents)"
+          event-color="green"
+          v-if="!getLengtData==0"
+        ></v-date-picker>
+        <FileLoader v-else/>
       </v-layout>
     </v-app>
   </div>
@@ -17,19 +24,24 @@
 
 <script>
 import YandexMap from "./components/YandexMap";
-import Dialog from "./components/DialogTools";
+import FileLoader from "./components/FileLoader";
+import { mapGetters } from "vuex";
 
 export default {
   name: "App",
   components: {
     YandexMap,
-    Dialog
+    FileLoader
   },
   data() {
     return {
+      date: "2019-03-01",
       krd: [45.087145, 38.991338],
       z: 5
     };
+  },
+  computed: {
+    ...mapGetters(["MyEvents","getLengtData"])
   }
 };
 </script>
