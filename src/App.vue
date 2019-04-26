@@ -25,7 +25,7 @@
 <script>
 import YandexMap from "./components/YandexMap";
 import FileLoader from "./components/FileLoader";
-import { mapGetters } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 
 export default {
   name: "App",
@@ -40,8 +40,16 @@ export default {
       z: 5
     };
   },
+  watch: {
+    date(val) {
+      console.log(MyEvents.val)
+    }
+  },
   computed: {
     ...mapGetters(["MyEvents","getLengtData"])
+  },
+  methods: {
+    ...mapActions(["addToSelect"])
   }
 };
 </script>

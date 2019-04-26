@@ -4,7 +4,8 @@ import mutations from "./mutations";
 
 export default {
   state: {
-    data: []
+    data: [],
+    select: []
   },
   getters,
   actions,
