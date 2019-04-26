@@ -42,7 +42,7 @@ export default {
             return parseFloat(ns); //Number(data);
             break;
           case "Array":
-            return new Array(data);
+            return data;
             break;
           case "Data":
             let values = data.split(/[^0-9]/),

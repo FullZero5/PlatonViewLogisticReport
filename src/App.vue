@@ -35,18 +35,19 @@ export default {
   },
   data() {
     return {
-      date: "2019-03-01",
+      date: "2019-04-01",
       krd: [45.087145, 38.991338],
       z: 5
     };
   },
   watch: {
     date(val) {
-      console.log(MyEvents.val)
+      let merged = [].concat.apply([], this.MyEvents[val]);
+      this.addToSelect(merged);
     }
   },
   computed: {
-    ...mapGetters(["MyEvents","getLengtData"])
+    ...mapGetters(["MyEvents", "getLengtData"])
   },
   methods: {
     ...mapActions(["addToSelect"])

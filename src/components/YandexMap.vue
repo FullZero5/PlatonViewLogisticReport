@@ -5,14 +5,10 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 import { injectYandexMap, initMap } from "./yandex.js";
 export default {
   name: "YandexMap",
-  data() {
-    return {
-      msg: "Yandex карта"
-    };
-  },
   props: {
     center: {
       type: Array,
@@ -28,15 +24,11 @@ export default {
     }
   },
   computed: {
-    //...mapGetters(["getSelectDatas", "getSelectOnly"])
+    ...mapGetters(["getSelectOnly"])
   },
   mounted() {
     injectYandexMap()
-      //.then(initMap(this.center, this.zoom, this.getSelectDatas))
-      .then(initMap(this.center, this.zoom, this.getSelectOnly))
-      .then(() => {
-        console.log("d");
-      });
+      .then(initMap(this.center, this.zoom, this.getSelectOnly));
   }
 };
 </script>
