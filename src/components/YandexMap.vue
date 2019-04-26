@@ -26,9 +26,20 @@ export default {
   computed: {
     ...mapGetters(["getSelectOnly"])
   },
+  watch: {
+    getSelectOnly() {
+      this.initMap();
+    }
+  },
   mounted() {
-    injectYandexMap()
-      .then(initMap(this.center, this.zoom, this.getSelectOnly));
+    this.initMap();
+  },
+  methods: {
+    initMap() {
+      injectYandexMap().then(
+        initMap(this.center, this.zoom, this.getSelectOnly)
+      );
+    }
   }
 };
 </script>

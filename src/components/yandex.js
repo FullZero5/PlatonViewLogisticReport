@@ -21,6 +21,11 @@ export function injectYandexMap() {
 
 export const initMap = (array, int, data) => () => {
   ymaps.ready(() => {
+    const myMap = new ymaps.Map("map", {
+      center: array,
+      zoom: int,
+      controls: ["zoomControl"]
+    });
     let multiRoute = new ymaps.multiRouter.MultiRoute(
       {
         referencePoints: [[]],
@@ -28,11 +33,7 @@ export const initMap = (array, int, data) => () => {
       },
       { boundsAutoApply: true, balloonPanelMaxMapArea: 0 }
     );
-    multiRoute.model.setReferencePoints([[]]);
-    const myMap = new ymaps.Map("map", {
-      center: array,
-      zoom: int
-    });
+    multiRoute.model.setReferencePoints(data);
     myMap.geoObjects.add(multiRoute);
   });
 };
