@@ -45,6 +45,6 @@
     "last 2 versions",
     "not ie <= 8"
   ],
-  "keywords": [],
+  "keywords": ["vue","платон","csv файл"],
   "description": "работа с логистическим отчетом"
 }

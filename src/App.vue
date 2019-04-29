@@ -4,7 +4,7 @@
       <v-content>
         <v-layout fill-height>
           <v-flex xs12 align-center justify-center flexbox>
-            <YandexMap :center="krd" :zoom="z"/>
+            <YandexMap/>
           </v-flex>
         </v-layout>
       </v-content>
@@ -34,9 +34,7 @@ export default {
   },
   data() {
     return {
-      date: "2019-04-01",
-      krd: [45.087145, 38.991338],
-      z: 5
+      date: "2019-04-01"
     };
   },
   watch: {

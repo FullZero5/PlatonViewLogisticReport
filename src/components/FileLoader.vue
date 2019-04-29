@@ -12,11 +12,10 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from "vuex";
+import { mapActions } from "vuex";
 
 export default {
   name: "FileLoader",
-  components: {},
   data() {
     return {
       headers: [
@@ -37,14 +36,16 @@ export default {
     convetoType(type, data) {
       if (typeof data !== "undefined") {
         switch (type) {
-          case "Number":
+          case "Number":{
             let ns = data.replace(/,/g, ".");
             return parseFloat(ns); //Number(data);
             break;
-          case "Array":
+          }
+          case "Array":{
             return data;
             break;
-          case "Data":
+          }
+          case "Data":{
             let values = data.split(/[^0-9]/),
               year = parseInt(values[2], 10),
               month = parseInt(values[1], 10) - 1, // Month is zero based, so subtract 1
@@ -54,8 +55,10 @@ export default {
               seconds = parseInt(values[5], 10);
             return new Date(year, month, day, hours, minutes, seconds);
             break;
-          default:
+          }
+          default:{
             return data;
+          }
         }
       }
     },

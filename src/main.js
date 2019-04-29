@@ -11,8 +11,6 @@ Vue.use(Vuetify);
 Vue.config.productionTip = false;
 
 new Vue({
-  el: "#app",
   store,
-  components: { App },
-  template: "<App/>"
-});
+  render: h => h(App)
+}).$mount('#app');

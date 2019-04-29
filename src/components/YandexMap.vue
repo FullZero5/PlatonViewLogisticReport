@@ -9,14 +9,6 @@ import { mapGetters } from "vuex";
 export default {
   name: "YandexMap",
   props: {
-    center: {
-      type: Array,
-      default: [55.76, 37.64]
-    },
-    zoom: {
-      type: Number,
-      default: 7
-    },
     height: {
       type: [String, Number],
       default: 323
@@ -64,11 +56,10 @@ export default {
     initializeYandexMap() {
       ymaps.ready(() => {
         this.map = new ymaps.Map("map", {
-          center: [55.76, 37.64],
+          center: [45.087145, 38.991338],
           zoom: 7,
           controls: ["zoomControl"]
         });
-        //this.getCoordData().then(() => this.setMarkers());
       });
     }
   }
