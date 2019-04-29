@@ -11,7 +11,6 @@ export function injectYandexMap() {
       js.src = "//api-maps.yandex.ru/2.1/?lang=ru_RU";
       js.onload = resolve;
       js.onerror = reject;
-
       fjs.parentNode.insertBefore(js, fjs);
     } catch (err) {
       reject(err);
@@ -21,7 +20,7 @@ export function injectYandexMap() {
 
 export const initMap = (array, int, data) => () => {
   ymaps.ready(() => {
-    const myMap = new ymaps.Map("map", {
+    let myMap = new ymaps.Map("map", {
       center: array,
       zoom: int,
       controls: ["zoomControl"]
@@ -29,11 +28,12 @@ export const initMap = (array, int, data) => () => {
     let multiRoute = new ymaps.multiRouter.MultiRoute(
       {
         referencePoints: [[]],
-        params: { results: 2 }
+        params: { results: 2, reverseGeocoding: true, avoidTrafficJams: false }
       },
       { boundsAutoApply: true, balloonPanelMaxMapArea: 0 }
     );
     multiRoute.model.setReferencePoints(data);
     myMap.geoObjects.add(multiRoute);
+    //myMap.container.fitToViewport();
   });
 };

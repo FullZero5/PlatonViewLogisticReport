@@ -11,6 +11,10 @@ const formatDate = st => {
 
 export default {
   getAllDatas: ({ data }) => data,
+  getMonthReport: ({ data }) =>
+    formatDate(
+      new Date(data[0].startDate.getFullYear(), data[0].startDate.getMonth(), 1)
+    ),
   getDistanceTraveled: ({ data }) =>
     data.reduce((prev, next) => prev + next.distance, 0).toFixed(2),
   getLengtData: ({ data }) => data.length,

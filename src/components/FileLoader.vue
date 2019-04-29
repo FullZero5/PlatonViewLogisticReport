@@ -2,7 +2,7 @@
   <v-container grid-list-xl text-xs-center>
     <v-layout row wrap>
       <v-flex xs10 offset-xs1>
-        <v-btn fab color="primary" @click="$refs.inputUpload.click()">
+        <v-btn fab color="primary ripple" @click="$refs.inputUpload.click()">
           <v-icon>attach_file</v-icon>
         </v-btn>
         <input v-show="false" ref="inputUpload" accept=".csv" type="file" @change="loadCSV($event)">
@@ -103,3 +103,46 @@ export default {
 };
 </script>
 
+<style scoped>
+.ripple {
+  box-sizing:border-box;
+  position:relative;
+}
+
+.ripple:before {
+  animation:ripple 2s ease-out infinite;
+  border:solid 2px #09c;
+  border-radius:1em;
+  bottom:0;
+  box-sizing:border-box;
+  content:"";
+  left:0;
+  position:absolute;
+  right:0;
+  top:0;
+}
+
+.ripple:after {
+  animation:ripple 2s 1s ease-out infinite;
+  border:solid 2px #09c;
+  border-radius:2em;
+  bottom:0;
+  box-sizing:border-box;
+  content:"";
+  left:0;
+  position:absolute;
+  right:0;
+  top:0;
+}
+
+@keyframes ripple {
+  0% {
+    opacity:.25;
+  }
+  100% {
+    border-radius:2em;
+    opacity:0;
+    transform:scale(3);
+  }
+}
+</style>

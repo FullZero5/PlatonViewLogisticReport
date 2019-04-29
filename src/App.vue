@@ -26,7 +26,6 @@
 import YandexMap from "./components/YandexMap";
 import FileLoader from "./components/FileLoader";
 import { mapActions, mapGetters } from "vuex";
-
 export default {
   name: "App",
   components: {
@@ -47,7 +46,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(["MyEvents", "getLengtData"])
+    ...mapGetters(["MyEvents", "getMonthReport", "getLengtData"])
   },
   methods: {
     ...mapActions(["addToSelect"])

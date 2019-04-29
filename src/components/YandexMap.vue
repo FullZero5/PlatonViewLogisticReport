@@ -1,12 +1,11 @@
 <template>
   <div id="wrapper">
-    <div :style="{ height: height + 'px' }" id="map"></div>
+    <div :style="{ height: height + 'px' }" id="map" ref="map"></div>
   </div>
 </template>
 
 <script>
 import { mapGetters } from "vuex";
-import { injectYandexMap, initMap } from "./yandex.js";
 export default {
   name: "YandexMap",
   props: {
@@ -23,22 +22,54 @@ export default {
       default: 323
     }
   },
+  data() {
+    return {
+      map: null
+    };
+  },
   computed: {
     ...mapGetters(["getSelectOnly"])
   },
   watch: {
     getSelectOnly() {
-      this.initMap();
+      //Удаление
+      this.map.geoObjects.removeAll();
+      let multiRoute = new ymaps.multiRouter.MultiRoute(
+        {
+          referencePoints: [[]],
+          params: {
+            results: 2,
+            
+            avoidTrafficJams: false
+          }
+        },
+        { boundsAutoApply: true }
+      );
+      multiRoute.model.setReferencePoints(this.getSelectOnly);
+      this.map.geoObjects.add(multiRoute);
     }
   },
   mounted() {
-    this.initMap();
+    // Установить скрипты для использования яндекс карты
+    let scriptYandexMap = document.createElement("script");
+    scriptYandexMap.setAttribute(
+      "src",
+      "https://api-maps.yandex.ru/2.1/?lang=ru_RU"
+    );
+    document.head.appendChild(scriptYandexMap);
+    // Инициализировать яндекс карту
+    scriptYandexMap.addEventListener("load", this.initializeYandexMap);
   },
   methods: {
-    initMap() {
-      injectYandexMap().then(
-        initMap(this.center, this.zoom, this.getSelectOnly)
-      );
+    initializeYandexMap() {
+      ymaps.ready(() => {
+        this.map = new ymaps.Map("map", {
+          center: [55.76, 37.64],
+          zoom: 7,
+          controls: ["zoomControl"]
+        });
+        //this.getCoordData().then(() => this.setMarkers());
+      });
     }
   }
 };
@@ -52,7 +83,7 @@ export default {
 }
 #map {
   flex: 1;
-  border: 1px solid orange;
+  border: 1px solid #09c;
   height: 100%;
   width: 100%;
 }
